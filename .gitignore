@@ -36,6 +36,9 @@ local.properties
 .kotlin/
 
 # node.js
+# Firebase Service Account
+tripieai-firebase-adminsdk-fbsvc-639e03d6b2.json
+
 #
 node_modules/
 npm-debug.log
