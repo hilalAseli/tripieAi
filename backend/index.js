@@ -8,7 +8,7 @@ const {default: axios} = require('axios');
 const serviceAccount = require('../tripieai-firebase-adminsdk-fbsvc-639e03d6b2.json');
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
 
 const db = admin.firestore();
@@ -18,7 +18,8 @@ const port = 3000;
 
 app.use(express.json());
 
-const geminiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+const geminiEndpoint =
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 app.post('/allPrompt', async (req, res) => {
   try {
@@ -60,16 +61,16 @@ app.post('/allPrompt', async (req, res) => {
 
     const userRef = db.collection('users').doc(userId);
     const userDoc = await userRef.get();
-    
+
     if (!userDoc.exists) {
       throw new Error('User not found');
     }
-    
+
     const userData = userDoc.data();
     const userTravelPlan = userData.userTravelPlan || [];
-    
+
     await userRef.update({
-      userTravelPlan: [...userTravelPlan, parseReply]
+      userTravelPlan: [...userTravelPlan, parseReply],
     });
 
     res.status(200).json({
@@ -149,22 +150,22 @@ app.post('/handleSignUp', async (req, res) => {
 app.delete('/deletePlanner/:userId/trips/:deleteItem', async (req, res) => {
   try {
     const {userId, deleteItem} = req.params;
-    
+
     const userRef = db.collection('users').doc(userId);
     const userDoc = await userRef.get();
-    
+
     if (!userDoc.exists) {
       return res.status(404).json({
         message: 'User tidak ditemukan',
         success: false,
       });
     }
-    
+
     const userData = userDoc.data();
     const updatePlan = userData.userTravelPlan
       ? userData.userTravelPlan.filter(item => item.tripName !== deleteItem)
       : [];
-    
+
     await userRef.update({
       userTravelPlan: updatePlan,
     });
@@ -173,7 +174,6 @@ app.delete('/deletePlanner/:userId/trips/:deleteItem', async (req, res) => {
       message: 'Semua rencana perjalanan berhasil dihapus',
       success: true,
     });
-    
   } catch (err) {
     console.error('Gagal menghapus rencana perjalanan:', err);
     res.status(500).json({
