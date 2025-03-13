@@ -1,0 +1,11 @@
+android
+ios
+node_modules
+.git
+.vercel
+*.log
+*.apk
+*.so
+*.sqlite
+build
+dist

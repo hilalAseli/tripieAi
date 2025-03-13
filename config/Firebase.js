@@ -3,13 +3,13 @@ const { getAuth } = require('firebase/auth');
 const { getFirestore } = require('firebase/firestore');
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyATOJXuWND_w0VNXuYpmdZn_7DSRYrtpx8',
-  authDomain: 'tripieai.firebaseapp.com',
-  projectId: 'tripieai',
-  storageBucket: 'tripieai.firebasestorage.app',
-  messagingSenderId: '213956386931',
-  appId: '1:213956386931:web:d88969abb6daf8bad58a06',
-  measurementId: 'G-L2EDF9RQXD',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
