@@ -134,13 +134,19 @@ export default function DetailDestination({route}) {
                   }}>
                   Tips:
                 </Text>
-                {detail.tips.map((tip, index) => (
-                  <Text
-                    key={index}
-                    style={{color: 'black', fontFamily: 'Outfit-Regular'}}>
-                    💡 {tip}
+                {detail.tips.length > 0 ? (
+                  detail.tips.map((tip, index) => (
+                    <Text
+                      key={index}
+                      style={{color: 'black', fontFamily: 'Outfit-Regular'}}>
+                      💡 {tip}
+                    </Text>
+                  ))
+                ) : (
+                  <Text style={{color: 'gray', fontFamily: 'Outfit-Regular',textAlign:'center'}}>
+                    Belum ada tips untuk tempat ini 😊
                   </Text>
-                ))}
+                )}
               </View>
             </View>
           </View>
